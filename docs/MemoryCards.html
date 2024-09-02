@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Memória</title>
+    <link rel="stylesheet" href="./styles/MemoryCards.css">
+</head>
+<body>
+
+<aside>
+    <h1>Jogo da Memória</h1>
+    <div id="controls">
+        <button onclick="exibirCartas()">Exibir</button>
+        <button onclick="comecarJogo()">Começar</button>
+        <label for="suitSelect">Escolha o naipe:</label>
+        <select id="suitSelect" onchange="exibirCartas()">
+            <option value="espadas">Espadas</option>
+            <option value="copas">Copas</option>
+            <option value="ouros">Ouros</option>
+            <option value="paus">Paus</option>
+        </select>
+    </div>
+    <p id="status">Status: Aguardando início</p>
+    <p id="timer">Tempo: 0 segundos</p>
+    <p>Acertos: <span id="acertos">0</span></p>
+    <p>Erros: <span id="erros">0</span></p>
+    <button onclick="reiniciarJogo()">Jogar Novamente</button>
+</aside>
+
+<div class="game-board" id="gameBoard">
+    <!-- As cartas serão geradas pelo JavaScript -->
+</div>
+
+<script>
+
+const naipes = {
+    espadas: ['🂡', '🂢', '🂣', '🂤', '🂥', '🂦', '🂧', '🂨', '🂩', '🂪', '🂫', '🂭', '🂮'],
+    copas: ['🃁', '🃂', '🃃', '🃄', '🃅', '🃆', '🃇', '🃈', '🃉', '🃊', '🃍', '🃎', '🃏'],
+    ouros: ['🃑', '🃒', '🃓', '🃔', '🃕', '🃖', '🃗', '🃘', '🃙', '🃚', '🃝', '🃞', '🃟'],
+    paus: ['🃁', '🃂', '🃃', '🃄', '🃅', '🃆', '🃇', '🃈', '🃉', '🃊', '🃍', '🃎', '🃏']
+};
+
+let cartasEmbaralhadas = [];
+let primeiraCarta = null;
+let segundaCarta = null;
+let acertos = 0;
+let erros = 0;
+let timer = 0;
+let timerInterval;
+
+function exibirCartas() {
+    const suit = document.getElementById('suitSelect').value;
+    const cartas = [...naipes[suit].slice(0, 6), ...naipes[suit].slice(0, 6)]; // 6 pares
+    cartasEmbaralhadas = embaralhar(cartas);
+
+    const gameBoard = document.getElementById('gameBoard');
+    gameBoard.innerHTML = '';
+    cartasEmbaralhadas.forEach((carta, index) => {
+        const cartaElemento = document.createElement('div');
+        cartaElemento.classList.add('card');
+        cartaElemento.textContent = carta;
+        gameBoard.appendChild(cartaElemento);
+    });
+}
+
+function comecarJogo() {
+    const gameBoard = document.getElementById('gameBoard');
+    const cartasElementos = gameBoard.querySelectorAll('.card');
+    cartasElementos.forEach((cartaElemento, index) => {
+        cartaElemento.classList.add('hidden');
+        cartaElemento.textContent = '';
+        cartaElemento.addEventListener('click', () => virarCarta(cartaElemento, index));
+    });
+
+    acertos = 0;
+    erros = 0;
+    document.getElementById('acertos').textContent = acertos;
+    document.getElementById('erros').textContent = erros;
+
+    timer = 0;
+    clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+        timer++;
+        document.getElementById('timer').textContent = `Tempo: ${timer} segundos`;
+    }, 1000);
+
+    document.getElementById('status').textContent = 'Status: Jogando...';
+}
+
+function virarCarta(cartaElemento, index) {
+    if (cartaElemento.classList.contains('hidden')) {
+        cartaElemento.classList.remove('hidden');
+        cartaElemento.textContent = cartasEmbaralhadas[index];
+
+        if (!primeiraCarta) {
+            primeiraCarta = { elemento: cartaElemento, index: index };
+        } else if (!segundaCarta) {
+            segundaCarta = { elemento: cartaElemento, index: index };
+            verificarPar();
+        }
+    }
+}
+
+function verificarPar() {
+    if (primeiraCarta.index !== segundaCarta.index &&
+        cartasEmbaralhadas[primeiraCarta.index] === cartasEmbaralhadas[segundaCarta.index]) {
+        acertos++;
+        document.getElementById('acertos').textContent = acertos;
+        resetarCartas();
+
+        if (acertos === 6) {
+            fimDeJogo();
+        }
+    } else {
+        erros++;
+        document.getElementById('erros').textContent = erros;
+        setTimeout(() => {
+            primeiraCarta.elemento.classList.add('hidden');
+            segundaCarta.elemento.classList.add('hidden');
+            primeiraCarta.elemento.textContent = '';
+            segundaCarta.elemento.textContent = '';
+            resetarCartas();
+        }, 1000);
+    }
+}
+
+function resetarCartas() {
+    primeiraCarta = null;
+    segundaCarta = null;
+}
+
+function fimDeJogo() {
+    clearInterval(timerInterval);
+    document.getElementById('status').textContent = `Fim de jogo! Acertos: ${acertos}, Erros: ${erros}`;
+}
+
+function reiniciarJogo() {
+    exibirCartas();
+    document.getElementById('status').textContent = 'Status: Aguardando início';
+    document.getElementById('timer').textContent = 'Tempo: 0 segundos';
+    document.getElementById('acertos').textContent = '0';
+    document.getElementById('erros').textContent = '0';
+}
+
+function embaralhar(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+</script>
+
+</body>
+</html>
