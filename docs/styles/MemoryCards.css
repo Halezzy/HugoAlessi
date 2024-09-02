@@ -1,0 +1,88 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+header {
+    width: 100%;
+    background-color: #007BFF;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+aside {
+    width: 300px;
+    padding: 20px;
+    background-color: #f0f8ff;
+    border-right: 2px solid #ddd;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    margin: 0;
+}
+
+#controls {
+    margin-bottom: 20px;
+}
+
+button, select {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    border: none;
+    background-color: #007BFF;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 70%;
+}
+
+button:hover, select:hover {
+    background-color: #0056b3;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas */
+    grid-gap: 10px;
+    margin: 20px;
+    width: calc(100vw - 320px); /* Ajuste para ocupar o espaço restante */
+    height: 80vh;
+    max-width: calc(100vw - 320px);
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    border: 2px solid #333;
+    font-size: 180px; /* Tamanho grande para cartas */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: #fafafa;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.card.hidden {
+    background-color: #007BFF;
+    color: #007BFF;
+}
+
+p {
+    font-size: 18px;
+    color: #333;
+    margin: 10px 0;
+}
+
+select {
+    width: 70%;
+}
