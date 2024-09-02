@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria de Arte</title>
+    <link rel="stylesheet" href="./styles/portfolio.css"> <!-- Link para o CSS específico da página de formação -->
+</head>
+<body>
+
+        <!-- Cabeçalho com um banner e o título "Pinturas" -->
+        <header>
+            <div class="banner" style="background-image: url('./Pinturas/SomeWay.png');"></div>
+            <h1>Pinturas</h1>
+        </header>
+    
+        <!-- Seção da galeria com figuras e legendas das pinturas -->
+
+<section class="gallery">
+    <figure>
+        <img src="Pinturas/NhoJohn.png" alt="NhoJohn" class="thumbnail">
+        <figcaption>NhoJohn</figcaption>
+    </figure>
+    <figure>
+        <img src="Pinturas/Carisma.png" alt="Carisma" class="thumbnail">
+        <figcaption>Carisma</figcaption>
+    </figure>
+    <figure>
+        <img src="Pinturas/Smoke.png" alt="Smoke" class="thumbnail">
+        <figcaption>Smoke</figcaption>
+    </figure>
+    <figure>
+        <img src="Pinturas/Spark.png" alt="Spark" class="thumbnail">
+        <figcaption>Spark</figcaption>
+    </figure>
+
+    <figure>
+        <img src="Pinturas/Unicornios.png" alt="Unicornios" class="thumbnail">
+        <figcaption>Olympus Unicorns</figcaption>
+    </figure>
+    <figure>
+        <img src="Pinturas/Balance.png" alt="Balance" class="thumbnail">
+        <figcaption>Balance</figcaption>
+    </figure>   
+    <figure>
+        <img src="Pinturas/LostValley.png" alt="Lost Valley" class="thumbnail">
+        <figcaption>Lost Valley</figcaption>
+    </figure>
+    <figure>
+        <img src="Pinturas/Transition.png" alt="Transition" class="thumbnail">
+        <figcaption>Transition</figcaption>
+    </figure>
+    <figure>
+        <img src="Pinturas/MissGarden.png" alt="MissGarden" class="thumbnail">
+        <figcaption>Miss Garden</figcaption>
+    </figure>
+    <figure>
+        <img src="Pinturas/SomeWay.png" alt="SomeWay" class="thumbnail">
+        <figcaption>SomeWay</figcaption>
+    </figure>
+    <figure>
+        <img src="Pinturas/Paradise.png" alt="Paradise" class="thumbnail">
+        <figcaption>Paradise</figcaption>
+    </figure>
+  
+    <figure>
+        <img src="Pinturas/MindSet.png" alt="MindSet" class="thumbnail">
+        <figcaption>MindSet</figcaption>
+    </figure>
+    
+</section>
+
+<!-- Modal -->
+<div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01">
+    <div class="caption-container" id="caption"></div>
+</div>
+
+<script>
+    // Pega o modal
+    var modal = document.getElementById("myModal");
+
+    // Pega a imagem e insere dentro do modal - usa o "alt" como legenda
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    var images = document.querySelectorAll('.gallery img');
+
+    images.forEach(img => {
+        img.addEventListener('click', function() {
+            modal.style.display = "flex";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+        });
+    });
+
+    // Fecha o modal ao clicar no X
+    var span = document.getElementsByClassName("close")[0];
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // Fecha o modal ao clicar fora da imagem
+    modal.onclick = function(event) {
+        if (event.target !== modalImg) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+
+</body>
+</html>

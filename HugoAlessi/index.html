@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio pessoal (CV online). Hugo Alessi</title>
+    <link rel="stylesheet" href="./styles/index.css">
+</head>
+<body>
+    <!-- Contêiner principal que envolve todo o layout da página -->
+    <div class="container">
+        
+        <!-- Barra lateral com navegação para as diferentes páginas -->
+        <aside class="sidebar">
+            <h3>Portfólio Pessoal</h3>
+            <nav>
+                <ul>
+                    <li><a href="home.html" onclick="changePage('home.html'); return false;">Sobre Mim</a></li>
+                    <li><a href="formacao.html" onclick="changePage('formacao.html'); return false;">Formação</a></li>
+                    <li><a href="portfolio.html" onclick="changePage('portfolio.html'); return false;">Portfólio</a></li>
+                    <li><a href="contato.html" onclick="changePage('contato.html'); return false;">Contato</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Área principal onde o conteúdo de cada página será exibido -->
+        <main class="content">
+            <iframe id="content-frame" src="home.html" frameborder="0"></iframe>
+        </main>
+        <h3>CV online - Hugo Alessi</h3>   
+    </div>
+
+    <!-- Script para alterar o conteúdo da página dentro do iframe sem recarregar a página -->
+    <script>
+        function changePage(page) {
+            document.getElementById('content-frame').src = page;
+        }
+    </script>
+</body>
+</html>

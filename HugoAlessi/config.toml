@@ -1,0 +1,35 @@
+baseURL = "https://hugoalessi.netlify.app/" 
+languageCode = "pt-br"
+title = "CV online Hugo Alessi"
+theme = "Portfólio pessoal (CV online)" 
+
+[params]
+  description = "Portfólio Pessoal"
+  author = "Hugo Alessi"
+
+[menus]
+  [[menu.main]]
+    name = "Home"
+    url = "/home.html"
+    weight = 1
+
+  [[menu.main]]
+    name = "Portfolio"
+    url = "/portfolio.html"
+    weight = 2
+
+  [[menu.main]]
+    name = "Formação"
+    url = "/formacao.html"
+    weight = 3
+
+  [[menu.main]]
+    name = "Contato"
+    url = "/contato.html"
+    weight = 4
+
+[outputFormats]
+  [outputFormats.HTML]
+    mediaType = "text/html"
+    baseName = "index"
+    isPlainText = false

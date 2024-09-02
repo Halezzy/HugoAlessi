@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato</title>
+    <link rel="stylesheet" href="./styles/contato.css">
+</head>
+
+<body>
+
+    <!-- Conteúdo principal da página de contato -->
+    <main>
+        <!-- Título principal da página -->
+        <h1>Contato</h1>
+
+        <!-- Formulário para envio de email. O atributo 'action' define o email de destino, 
+        e 'method' indica o método de envio dos dados -->
+        <form action="mailto:seu-email@example.com" method="post" enctype="text/plain">
+            
+            <!-- Grupo de campos do formulário: Nome -->
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+
+            <!-- Grupo de campos do formulário: Email -->
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <!-- Grupo de campos do formulário: Celular -->
+            <div class="form-group">
+                <label for="celular">Celular:</label>
+                <input type="tel" id="celular" name="celular" placeholder="(00) 00000-0000">
+            </div>
+
+            <!-- Grupo de campos do formulário: Mensagem -->
+            <div class="form-group">
+                <label for="mensagem">Mensagem:</label>
+                <textarea id="mensagem" name="mensagem" required></textarea>
+            </div>
+
+            <!-- Botão para enviar o formulário -->
+            <button type="submit">Enviar</button>
+        </form>
+    </main>
+
+</body>
+</html>
