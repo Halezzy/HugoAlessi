@@ -4,23 +4,21 @@ body.pagina-formacao {
     font-family: Arial, sans-serif;
 }
 
+/* Define a altura do header */
 header {
-    padding: 20px;
-    background-color: #fff;
-    border-bottom: 2px solid #ddd;
+    padding: 10px; /* Ajuste a altura conforme necessário */
+    background-color: #f0f0f0; /* Cor de fundo para melhor visualização (opcional) */
 }
 
 .profile-header {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Ajuste conforme necessário */
 }
 
-.profile-img {
-    border-radius: 30px;
-    
-    height: 170px;
-    object-fit: cover;
-    margin-right: 20px;
+.profile-info {
+    text-align: center;
 }
 
 .profile-info {
